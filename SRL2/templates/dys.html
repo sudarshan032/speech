@@ -1,0 +1,105 @@
+
+{% extends "layout.html" %}
+{% block body %}
+        <head>
+            <script>
+                function handleFileUpload(input) {
+                    var audioPlayer = document.getElementById('audioPlayer');
+                    
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        
+                        reader.onload = function (e) {
+                            audioPlayer.src = e.target.result;
+                            audioPlayer.play();
+                        };
+                        
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+            </script>
+        </head>
+
+        <!-- Page Header-->
+        <header style="background-color:#0e387a;" class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+            <title>Dysarthric Speech Classification | AST</title>
+            <div class="heading2 container position-relative px-1 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading mb-5">
+                            <h1>Dysarthric Speech Classification</h1>
+                           </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container" style=" margin-top: 20px; display: block; box-sizing: border-box;" >
+            <h3>How to Use ?</h3>
+            <p>
+                Dysarthria is a neuro-motor speech defect that causes speech to be unintelligible and is largely unnoticeable to humans at various severity-levels. <br> Dysarthric speech classification is used as a diagnostic method to assess the progression of a patient's severity of the condition, as well as to aid with automatic dysarthric speech recognition systems (an important assistive speech technology). <br> Severity-level of dysarthria depends on the impact and damage to the area of neurological injury, which is diagnosed using a brain and nerve test. <br> <br>
+The type, underlying cause, severity-level, and its symptoms, all influence the manner in which it is treated. <br> Due to this uncertainty in treatment, researchers are motivated to develop speech assistive tools for dysarthric intelligibility categorization. <br> We employ a dysarthric severity-level classification tool using state-of-the-art features which are known to capture global spectral properties of signal using deep neural network based classifiers.  <br>
+
+            </p>    
+        </div>
+        <!-- <form class="grid pt-3" method="POST" enctype="multipart/form-data">
+        <div class="container py-10" style=" margin-top: 10px; display:block;">
+        <div class="container" style="background-color:  #dae3f1; box-sizing: border-box; opacity: 0.3; padding-bottom: 10px; width: 40%; height: 500px; float: left; margin-left: 100px;">
+            <div class="input-group"  >
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" name="file" id="inputGroupFile04">
+                <label class="custom-file-label" for="inputGroupFile04"></label>
+              </div>
+                <span class="container"></span>
+            </div>
+        </div>
+        <div class="container" style="background-color: #dae3f1; opacity: 0.3; padding-bottom: 10rem; width: 40%; height: 500px; float: right; margin-right: 100px;"> 
+            {% if abc %}
+            {{ abc }}
+            {%endif%}
+            
+        </div>
+    </div>
+        <div class="input-group-append py-10"  style=" margin-top: 20px; display:block; box-sizing: border-box;"  >
+                <button class="btn btn-outline-secondary pt-3" type="submit" style=" margin-top: 10px; padding-top: 20px; display: flex; box-sizing: border-box; background-color: dimgray;  justify-content: center;  align-items: center; margin: auto;" >Classify</button>
+
+
+
+
+        </div>
+        </form>
+        
+        <form class="grid py-3" action="/">
+            <div class="input-group-append"  style=" margin-top: 20px; display:block; box-sizing: border-box;"  >
+                <button class="btn btn-outline-secondary" type="submit" style=" margin-top: 10px; padding-top: 20px; display: flex; box-sizing: border-box; background-color: dimgray;  justify-content: center;  align-items: center; margin: auto;" >Reset</button>
+                
+
+
+        </div>
+        </form> -->
+        <form class="grid pt-3" method="POST" enctype="multipart/form-data">
+            <div class="container py-10 mt-xxl-5 " style=" margin-top: 10px; display:block;">
+                <div class="container" style="background-color:  #dae3f1; box-sizing: border-box; padding-bottom: 10px; width: 40%; height: 500px; float: left; margin-left: 100px;">
+                    <div class="input-group" style="padding:10%;align-items: center">
+                    <div class="custom-file" style="margin:10%; justify-items: center;">
+                        <input type="file" class="custom-file-input mt-xxl-4 " name="file" id="inputGroupFile04" onchange="handleFileUpload(this);">
+                    </div>
+                    <div style="margin:10%;">
+                        <audio id="audioPlayer" controls></audio>
+                    </div>
+                    </div>
+                </div>
+                <div class="container " style="background-color:  #dae3f1; padding-bottom: 10rem; width: 40%; height: 500px; float: right; margin-right: 100px;"> 
+                    <!-- <center><img src="{{abc}}" alt=" " style="height: 400px;"></center> -->
+                    <h1 style="text-align: center; padding-top:20% ">Word Spoken:</h1>
+                    <p class="text-xxl-center fs-1" style="text-align: center;">{{pqr}}</p>
+                    
+                </div>
+            </div>
+            <div class="input-group-append py-10"  style="margin-top: 20px; display:block; box-sizing: border-box; padding-top: 10px;"  >
+                    <button class="btn btn-outline-secondary pt-3" type="submit" style=" margin-top: 10px; padding-top: 20px; display: flex; box-sizing: border-box; background-color: dimgray;  justify-content: center;  align-items: center; margin: auto;" >Classify</button>
+            </div>
+            </form>
+        
+        
+{% endblock %}

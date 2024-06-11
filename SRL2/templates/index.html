@@ -1,0 +1,134 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+<!-- Page Header-->
+<header style="background-color: #0e387a;;" class="masthead">
+    <title>Assistive Speech Technologies | SRLAB, DAIICT</title>
+    <div class="heading1 container position-relative px-1 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-10">
+                <div class="site-heading mb-5">
+                    <h1>Assistive Speech Technologies</h1>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container" style="text-align: justify; margin-top: 20px; display: block; box-sizing: border-box;">
+    <h3>What are Assistive Speech Technologies?</h3>
+    <p>Speech technologies can be effectively used in Assistive Technologies in a large variety of ways, such as improving (or enhancing) the intelligibility of unintelligible speech of disabled and providing communicative assistance (devices) for frail people or individuals with severe motor or language impairments, such as dysarthria, cerebral palsy, Parkinson’s disease, Autism Spectrum Disorder. <br><br> In addition, the design of personalized Text-To-Speech for disabled persons is a socially relevant research problem. However, there has been very less interaction in the intersection between researchers of Assistive Technologies and speech technology. <br><br>
+        Assistive Technologies allows individuals with disabilities to do things that would otherwise be difficult for them. Assistive technologies provide universal access to televisions or telephones to make them accessible to those who are visually challenged or have hearing impairments. Prof. Patil and his team of DA-IICT use their experience to develop assistive speech technologies for the disabled. <br><br> It includes:
+        <!-- <ol>
+            <li>
+                Infant Cry Classification
+            </li>
+
+            <li>
+                Emotion Recognition
+            </li>
+
+            <li>
+                Dysarthric Severity-Level Classification
+            </li>
+        </ol> -->
+        </p>
+</div>
+
+
+<!-- Main Content-->
+<div>
+    <div class="card1 ms-auto me-xxl-auto row  row-cols-md-3 ">
+        <div class="col">
+            <div class="card h-100" style="width: 18rem;">
+                <h5 class="card-title">EMOTION CLASSIFICATION</h5>
+                <div class="card-body">
+                  <img src="static/assets/emotions.png" class="card-img-top mb-xxl-4" alt="">
+                  <a href="/emotions" class="btn ">CLICK HERE</a>
+                </div>
+              </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100" style="width: 18rem;">
+                <h5 class="card-title">INFANT CRY CLASSIFICATION</h5>
+                <div class="card-body">
+                  <img src="static/assets/infantcry.jpg" class="card-img-top mb-xxl-4 " alt="">
+                  <a href="/infant" class="btn">CLICK HERE</a>
+                </div>
+              </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100" style="width: 18rem;">
+                <h5 class="card-title">DYSARTHRIC ASR</h5>
+                <div class="card-body">
+                  <img src="static/assets/dysarthria.png" class="card-img-top mb-xxl-4 " alt="">
+                  <a href="/dys" class="btn">CLICK HERE</a>
+                </div>
+              </div>
+        </div>
+        <div class="col">
+            <div class="card h-100" style="width: 18rem;">
+                <h5 class="card-title">Voice Liveness Detection</h5>
+                <div class="card-body">
+                  <img src="static/assets/vld.png" class="card-img-top mb-xxl-4 " alt="">
+                  <a href="/vld" class="btn">CLICK HERE</a>
+                </div>
+              </div>
+        </div>
+        <div class="col">
+            <div class="card h-100" style="width: 18rem;">
+                <h5 class="card-title">Audio Deepfake Detection</h5>
+                <div class="card-body">
+                  <img src="static/assets/add.png" class="card-img-top mb-xxl-4 " alt="">
+                  <a href="/add" class="btn">CLICK HERE</a>
+                </div>
+              </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!--
+        <form class="grid pt-3" method="POST" enctype="multipart/form-data">
+        <div class="container py-10" style=" margin-top: 10px; display:block;">
+        <div class="container" style="background-color: #86939f; box-sizing: border-box; opacity: 0.3; padding-bottom: 10px; width: 40%; height: 500px; float: left; margin-left: 100px;">
+            <div class="input-group"  >
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" name="file" id="inputGroupFile04">
+                <label class="custom-file-label" for="inputGroupFile04"></label>
+              </div>
+                <span class="container"></span>
+            </div>
+        </div>
+        <div class="container" style="background-color: #86939f; opacity: 0.3; padding-bottom: 10rem; width: 40%; height: 500px; float: right; margin-right: 100px;"> 
+            {% if abc %}
+            {{ abc }}
+            {%endif%}
+            
+        </div>
+    </div>
+        <div class="input-group-append py-10"  style=" margin-top: 20px; display:block; box-sizing: border-box;"  >
+                <button class="btn btn-outline-secondary pt-3" type="submit" style=" margin-top: 10px; padding-top: 20px; display: flex; box-sizing: border-box; background-color: dimgray;  justify-content: center;  align-items: center; margin: auto;" >Classify</button>
+
+
+
+
+        </div>
+        </form>
+        
+        <form class="grid py-3" action="/">
+            <div class="input-group-append"  style=" margin-top: 20px; display:block; box-sizing: border-box;"  >
+                <button class="btn btn-outline-secondary" type="submit" style=" margin-top: 10px; padding-top: 20px; display: flex; box-sizing: border-box; background-color: dimgray;  justify-content: center;  align-items: center; margin: auto;" >Reset</button>
+                
+
+-->
+</div>
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block body %}
+<title>About Us | AST</title>
+<style>
+    .vertical-line{ 
+        border-left: 3px solid #ffffff;
+        height: 67px;
+    }
+</style>
+        <!-- Page Header-->
+        <header style="background-color: #0e387a;" class="masthead">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                          
+                          <IMG SRC="{{ url_for('static', filename='assets/DA-IICT emblem.png')}}" hspace=10 vspace=10 WIDTH="134" HEIGHT="134" BORDER="0">
+                            <h1>About Us</h1>
+                            <span class="subheading"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-12 col-lg-12 col-xl-12">
+                    <p>Speech and language are the most powerful means of communication between human beings. Speech carries different levels of information such as linguistic message content, speaker’s identity, his/her health, emotions, attitude, gender, age, the acoustic environment in which it is recorded. <br>
+                        <p>
+                            The aim of Speech Lab at DA-IICT group is to use this information hidden in speech and create an interface between human speech and computer for certain important tasks such as speech and speaker recognition, analysis of voice biometric attacks, speech synthesis, audio search applications, voice conversion, etc. The group is currently focusing on algorithms and systems of speech processing. <br>
+                        </p>
+                        <p>
+                            The aim of the group is to provide the researchers the freedom to work together in pursuing the ideas with passion and enthusiasm.
+                        </p>
+                        </p>   
+                    </div>
+                </div>
+            </div>
+        </main>
+{% endblock %}

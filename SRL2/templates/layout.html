@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+   
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/DA-IICT emblem.ico')}}" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css" /> -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+        rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{{ url_for('static', filename='css/styles.css')}}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark py-3 " id="mainNav" box-sizing: border-box; display:block;>
+        <div class="container-fluid px-4 px-lg-5 py-1.5">
+            <a class="navbar-brand" href="https://www.meity.gov.in/national-language-translation-mission"><img
+                    id="header-img" src="{{ url_for('static', filename='assets/logo_en.png')}}"
+                    style=" width: auto; height: 3rem;" alt="Menu"></a>
+
+            <span class="navbar-nav ms-auto me-xxl-3 py-4 py-lg-0"
+                style='font-size: 1.05rem; color: #fff;
+  font-weight: 100;
+  font-style: thin-italic;
+  font-family:  "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";'>
+                National Language Translation Mission (NLTM) | Project Bhashini </span><img src="{{ url_for('static', filename='assets/dalogo.png')}}"
+                style="  height: 4rem;" alt="Menu">
+        </div>
+    </nav>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light pt-5" id="mainNav">
+        <div class="container-fluid px-3 px-lg-5 py-3 pt-4">
+            <a class="navtext navbar-brand" href="/">AST</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size: 15px;"
+                            href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size: 15px;"
+                            href="/about">About</a></li>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size: 15px;"
+                                href="/team">Team</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size: 15px;"
+                            href="/contact">Queries</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/contact"><img id="header-img" src="{{ url_for('static', filename='assets/menu.png')}}" style=" width: 1.25rem; height: 1.25rem;" alt="Menu"></a></li>-->
+                    <div class="ddown">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle px-lg-5 py-3 py-lg-3" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <img id="header-img" src="{{ url_for('static', filename='assets/menu.png')}}"
+                                    style=" width: 1.25rem; height: 1.25rem;" alt="Menu">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/emotions">Emotions</a></li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="/infant">Infant Cry</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="/dys">Dysarthric Speech</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="/vld">Voice Liveness Detection</a></li>
+                                <li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                <li><a class="dropdown-item" href="/add">Audio Deepfake Detection</a></li>
+                                
+                                
+                            </ul>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block body %} {% endblock %}
+
+
+    <!-- Footer-->
+    <footer style="background-color:  #dae3f1;" class="border-top">
+        <div class="container px-0 px-lg-0">
+            <div class="row gx-0 gx-lg-0 justify-content-center">
+                <div class=" col-md-12 col-lg-12 col-xl-12" style="font-size: 0.875rem ;">
+                <p>
+                    <h4>Contact Us</h4> 
+                    <p>
+                        CEP-006, Speech Research Lab, 
+                    </p>
+                    <p>
+                        Dhirubhai Ambani Institute of Information and Communication Technology (DA-IICT), Gandhinagar - 382 007
+                    </p>
+                    <p>
+                        Tel: +91-79-30510587
+                    </p>
+                    </p>   
+                </div>
+            </div>
+        </div>
+
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="text-center text-muted fst-italic" style="font-size: 0.875rem ;">Copyright &copy; Speech Research Lab, DAIICT
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>

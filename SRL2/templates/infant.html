@@ -1,0 +1,96 @@
+
+{% extends "layout.html" %}
+{% block body %}
+        <head>
+            <script>
+                function handleFileUpload(input) {
+                    var audioPlayer = document.getElementById('audioPlayer');
+                    
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        
+                        reader.onload = function (e) {
+                            audioPlayer.src = e.target.result;
+                            audioPlayer.play();
+                        };
+                        
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+            </script>
+        </head>
+
+        <!-- Page Header-->
+        <header style="background-color: #0e387a;" class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+            <title>Infant Cry Classification | AST</title>
+            <div class="heading2 container position-relative px-1 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-8">
+                        <div class="site-heading mb-5">
+                            <h1>Infant Cry Classification</h1>
+                           </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container" style=" margin-top: 20px; display: block; box-sizing: border-box;" >
+            <h3>Why and How?</h3>
+            <p>Classification of infant cry into normal and pathological cries is a socially relevant research problem for a long time as crying is the only mode of communication for an infant to convey information to the parents or caregivers. <br> The cry of an infant can be meant for many reasons, which indicate the emotional, physical, and pathological needs of infants. <br> The exact reasoning behind the infant's cry is difficult to understand for inexperienced mothers and caregivers. <br> Hence, the infant cry classification system can be used for the early detection and diagnosis of the infant's condition. <br><br>
+                Several diagnosis methods, such as magnetic resonance imaging, computed tomography scans, and head ultrasound are used to identify various pathologies. <br> However, pathology diagnosis is costly, and also time taking, which impacts the health of the baby. <br> Hence, the need to develop a robust assistive infant cry classification algorithm to aid paediatricians. <br> To mitigate this problem, we use a method to classify infant cries using cutting-edge features that are known to capture their global spectral characteristics employing classifiers based on machine learning. <br>
+                </p>
+        </div>
+        <!-- <form class="grid pt-3" method="POST" enctype="multipart/form-data">
+        <div class="container py-10" style=" margin-top: 10px; display:block;">
+        <div class="container" style="background-color:  #dae3f1; box-sizing: border-box; padding-bottom: 10px; width: 40%; height: 500px; float: left; margin-left: 100px;">
+            <div class="input-group"  >
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" name="file" id="inputGroupFile04">
+                <label class="custom-file-label" for="inputGroupFile04"></label>
+              </div>
+                <span class="container"></span>
+            </div>
+        </div>
+        <div class="container" style="background-color:  #dae3f1;  padding-bottom: 10rem; width: 40%; height: 500px; float: right; margin-right: 100px;"> 
+            
+            {% if abc %}
+            {{ abc }}
+            {%endif%}
+            
+        </div>
+    </div>
+        <div class="input-group-append py-10"  style=" margin-top: 20px; display:block; box-sizing: border-box;"  >
+                <button class="btn btn-outline-secondary pt-3" type="submit" style=" margin-top: 10px; padding-top: 20px; display: flex; box-sizing: border-box; background-color: dimgray;  justify-content: center;  align-items: center; margin: auto;" >Classify</button>
+
+
+
+
+        </div>
+        </form> -->
+        <form class="grid pt-3" method="POST" enctype="multipart/form-data">
+            <div class="container py-10 mt-xxl-5 " style=" margin-top: 10px; display:block;">
+            <div class="container" style="background-color:  #dae3f1; box-sizing: border-box; padding-bottom: 10px; width: 40%; height: 500px; float: left; margin-left: 100px;">
+                <div class="input-group  "  style="padding:10%;align-items: center">
+                  <div class="custom-file " style="margin:10%; justify-items: center;">
+                    <input type="file" class="custom-file-input mt-xxl-4 " name="file" id="inputGroupFile04" onchange="handleFileUpload(this);">
+                    <!-- <label class="custom-file-label" for="inputGroupFile04"></label> -->
+                    <!-- <center><img style="opacity:0.1; height: 500px; padding-bottom: 10rem; padding-left:5rem; " src="{{ url_for('static', filename='assets/upload.png')}}  "></center> -->
+                  </div>
+                  <div style="margin:10%;">
+                    <audio id="audioPlayer" controls></audio>
+                  </div>
+                </div>
+            </div>
+            <div class="container " style="background-color:  #dae3f1; padding-bottom: 10rem; width: 40%; height: 500px; float: right; margin-right: 100px;"> 
+                <center><img src="{{abc}}" alt=" " style="height: 400px;"></center>
+                <p class="text-xxl-center fs-1" >{{pqr}}</p>
+                
+            </div>
+        </div>
+            <div class="input-group-append py-10"  style=" margin-top: 20px; display:block; box-sizing: border-box;"  >
+                    <button class="btn btn-outline-secondary pt-3" type="submit" style=" margin-top: 10px; padding-top: 20px; display: flex; box-sizing: border-box; background-color: dimgray;  justify-content: center;  align-items: center; margin: auto;" >Classify</button>
+            </div>
+            </form>
+
+        
+{% endblock %}
