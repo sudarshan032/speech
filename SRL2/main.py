@@ -235,7 +235,7 @@ def fun2(sound_file):
 
 
 def fun3(sound_file):
-    directory='C:/HCP/Disarthria Speech ASRU/Word Wise/test'
+    directory = r"test"
     classes = sorted(entry.name for entry in os.scandir(directory) if entry.is_dir())
     class_to_idx = {i: c for i, c in enumerate(classes)}
     # MAPPING
@@ -262,6 +262,7 @@ def fun3(sound_file):
     print(images.shape)
     outputs=saved_model(images)
     _,prediction=torch.max(outputs.data,1)
+    print(prediction.numpy()[0])
     # print(outputs.data)
     label=mapping[class_to_idx[prediction.numpy()[0]]][0]
     return label, label 
@@ -287,6 +288,7 @@ def fun4(sound_file):
     print("Helnk sm ms< mc")
     ans = model(feat_pad)
     print(ans[0][0])
+    
     ans=ans[0][0]
     y_pred = tf.cast((ans > 0.5), tf.uint8)
     if y_pred==0:

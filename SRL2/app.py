@@ -78,8 +78,8 @@ def add():
 def dys():
     print("hello")
     if request.method == "POST":
-            todo = request.form.get("todo")
-            print(todo)
+            # todo = request.form.get("todo")
+            # print(todo)
             if "file" not in request.files:
                 buf = os.path.join(imgFolder, 'R.gif')
                 buf1 = os.path.join(imgFolder, 'blank.png')
