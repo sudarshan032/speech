@@ -91,12 +91,12 @@ def dys():
                 return render_template('dys.html', img_gif=buf)
             if '.' in file.filename and (file.filename).rsplit('.', 1)[1] in FILE_TYPES:
                 print("Current Working Directory:", os.getcwd())
-                buf, buf1 = fun3(file)
-                return render_template('dys.html', img_gif=buf, emotion_name=buf1)
+                buf = fun3(file)
+                return render_template('dys.html', img_gif=buf)
             else:
                 buf = os.path.join(imgFolder, 'R.gif')
                 buf1 = os.path.join(imgFolder, 'blank.png')
-                return render_template('dys.html', img_gif=buf, emotion_name=buf1)
+                return render_template('dys.html', img_gif=buf)
     buf = os.path.join(imgFolder, 'blank.png')
     buf1 = os.path.join(imgFolder, 'blank.png')
     return render_template('dys.html', img_gif=buf)

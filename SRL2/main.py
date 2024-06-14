@@ -162,55 +162,84 @@ class BiGRUAudioClassifier(nn.Module):
 
 
 def fun1(wave_file):
+    # Load audio file
     data, sr = librosa.load(wave_file)
     
-    def cqtspec(audio,sr,min_freq=30,octave_resolution=14):
-        max_frequency= sr/2
-        num_freq = round(octave_resolution * np.log2(max_frequency/min_freq))
-        # step_length = int(pow(2, int(np.ceil(np.log2(0.04 * sr)))) / 2)
-        cqt_spectrogram = np.abs(librosa.cqt(data,sr=sr,fmin=min_freq,bins_per_octave=octave_resolution,n_bins=num_freq))
+    # CQT specification function
+    def cqtspec(audio, sr, min_freq=30, octave_resolution=14):
+        # Compute CQT spectrogram
+        cqt_spectrogram = np.abs(librosa.cqt(audio, sr=sr, fmin=min_freq, bins_per_octave=octave_resolution))
         return cqt_spectrogram
 
-    def cqhc(audio,sr,min_freq=30,octave_resolution=14,num_coeff=20):
-        cqt_spectrogram=np.power(cqtspec(audio,sr,min_freq,octave_resolution),2)
-        num_freq=np.shape(cqt_spectrogram)[0] 
-        ftcqt_spectrogram=np.fft.fft(cqt_spectrogram,2*num_freq-1,axis=0)
-        absftcqt_spectrogram=abs(ftcqt_spectrogram)
-        # spectral_component=np.real(np.fft.ifft(absftcqt_spectrogram,axis=0)[0:num_freq,:])
-        pitch_component=np.real(np.fft.ifft(ftcqt_spectrogram/(absftcqt_spectrogram+1e-14),axis=0)[0:num_freq,:])
-        coeff_indices=np.round(octave_resolution*np.log2(np.arange(1,num_coeff+1))).astype(int)
-        audio_cqhc=pitch_component[coeff_indices,:]
+    # CQT harmonic coefficients function
+    def cqhc(audio, sr, min_freq=30, octave_resolution=14, num_coeff=20):
+        cqt_spectrogram = cqtspec(audio, sr, min_freq, octave_resolution) ** 2
+        num_freq = cqt_spectrogram.shape[0]
+        ftcqt_spectrogram = np.fft.fft(cqt_spectrogram, 2 * num_freq - 1, axis=0)
+        absftcqt_spectrogram = np.abs(ftcqt_spectrogram)
+        pitch_component = np.real(np.fft.ifft(ftcqt_spectrogram / (absftcqt_spectrogram + 1e-14), axis=0))
+        coeff_indices = np.round(octave_resolution * np.log2(np.arange(1, num_coeff + 1))).astype(int)
+        
+        # Ensure all indices are positive and within bounds
+        coeff_indices = coeff_indices[(coeff_indices > 0) & (coeff_indices <= num_freq)]
+        if len(coeff_indices) == 0:
+            raise ValueError('All coefficient indices are invalid.')
+        
+        audio_cqhc = pitch_component[coeff_indices, :]
         return audio_cqhc
-    
-    #Input shape - (20,290,1)
-    feat = cqhc(data,sr,min_freq=30,octave_resolution=14,num_coeff=20)
-    
-    #Pad = 290
-    shape = 290 - feat.shape[1]
-    feat_pad = np.pad(feat, ((0,0), (0,shape)), 'constant')
-    feat_pad = feat_pad.reshape(1, 20, 290, 1)
-    
-    #Load model
-    
+
+    # Extract features
+    feat = cqhc(data, sr)
+
+    # Total number of elements in the target shape
+    target_num_elements = 20 * 290
+
+    # Check if the total number of elements matches
+    total_elements = feat.size
+    print(f'Total elements in feat: {total_elements}')
+    print(f'Target number of elements: {target_num_elements}')
+
+    if total_elements < target_num_elements:
+        # Pad to the target number of elements
+        pad_length = target_num_elements - total_elements
+        feat_pad = np.pad(feat.flatten(), (0, pad_length), 'constant')
+    elif total_elements > target_num_elements:
+        # Trim the feat to the target number of elements
+        feat_pad = feat.flatten()[:target_num_elements]
+    else:
+        feat_pad = feat.flatten()
+
+    # Reshape feat_pad to have the desired dimensions (1, 20, 290, 1)
+    try:
+        feat_pad = feat_pad.reshape(1, 20, 290, 1)
+    except ValueError as e:
+        print(f'Error reshaping feat_pad: {e}')
+        print(f'Original size: {feat_pad.size}')
+        print('Desired size: [1, 20, 290, 1]')
+        raise
+
+    # Load model
     model = load_model('models/emotion_h5_file.h5')
-    ans = model(feat_pad)
-    print("loaded")
+    ans = model.predict(feat_pad)
+    print("Model loaded")
+    
+    # Map output to labels
     output = np.argmax(ans)
     if output == 0:
         labels = os.path.join(imgFolder, 'angry.gif')
-        labels1='Angry'
+        labels1 = 'Angry'
     elif output == 1:
         labels = os.path.join(imgFolder, 'happy.gif')
-        labels1='Happy'
+        labels1 = 'Happy'
     elif output == 2:
         labels = os.path.join(imgFolder, 'neutral.gif')
-        labels1='Neutral'
+        labels1 = 'Neutral'
     elif output == 3:
         labels = os.path.join(imgFolder, 'sad.gif')
-        labels1='Sad'
+        labels1 = 'Sad'
     elif output == 4:
         labels = os.path.join(imgFolder, 'surprise.gif')
-        labels1='Surprise'
+        labels1 = 'Surprise'
     print(labels)
     return labels, labels1
 
@@ -265,11 +294,11 @@ def fun3(sound_file):
     print(prediction.numpy()[0])
     # print(outputs.data)
     label=mapping[class_to_idx[prediction.numpy()[0]]][0]
-    return label, label 
+    return label 
 
 def fun4(sound_file):
     def lfcc_mine(sr,audio):
-        lfccs=lfcc(audio,fs=sr,num_ceps=20,nfft=512,win_len=0.025,win_hop=0.010)
+        lfccs=lfcc(audio,fs=sr,num_ceps=20,nfft=512,window=0.025,win_hop=0.010)
         return lfccs
     audio,sr=librosa.load(sound_file)
     feat=lfcc_mine(sr,audio)

@@ -12,3 +12,5 @@ librosa
 spafe
 transformers
 openpyxl
+sounddevice
+wavio
