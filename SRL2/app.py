@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request , redirect
 from main import *
+from dummy import *
 
 imgFolder = os.path.join('static', 'assets')
 app = Flask(__name__)
@@ -101,6 +102,7 @@ def dys():
     buf1 = os.path.join(imgFolder, 'blank.png')
     return render_template('dys.html', img_gif=buf)
     # return render_template('dys.html')
+
 
 @app.route("/emotions", methods=["GET","POST"])
 def emotions():
