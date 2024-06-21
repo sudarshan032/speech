@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request , redirect
 from main import *
-from SRL2.audio_input import *
 
 imgFolder = os.path.join('static', 'assets')
 app = Flask(__name__)
