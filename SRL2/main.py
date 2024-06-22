@@ -21,7 +21,7 @@ imgFolder = os.path.join('static', 'assets')
 processor = WhisperProcessor.from_pretrained("openai/whisper-base")
 model = WhisperForConditionalGeneration.from_pretrained("openai/whisper-base")
 model.config.forced_decoder_ids = None
-
+whisper_model = WhisperModel.from_pretrained("openai/whisper-base")
 # model_small = WhisperModel.from_pretrained("openai/whisper-small")
 processor_small = WhisperProcessor.from_pretrained("openai/whisper-small")
 
@@ -163,16 +163,16 @@ class BiGRUAudioClassifier(nn.Module):
 def fun1(wave_file):
     data, sr = librosa.load(wave_file)
     
-    # def cqtspec(audio,sr,min_freq=30,octave_resolution=14):
-    #     max_frequency= sr/2
-    #     num_freq = round(octave_resolution * np.log2(max_frequency/min_freq))
-    #     # step_length = int(pow(2, int(np.ceil(np.log2(0.04 * sr)))) / 2)
-    #     cqt_spectrogram = np.abs(librosa.cqt(data,sr=sr,fmin=min_freq,bins_per_octave=octave_resolution,n_bins=num_freq))
-    #     return cqt_spectrogram
-    def cqtspec(audio, sr, min_freq=30, octave_resolution=14):
-        # Compute CQT spectrogram
-        cqt_spectrogram = np.abs(librosa.cqt(audio, sr=sr, fmin=min_freq, bins_per_octave=octave_resolution, hop_length=128))
+    def cqtspec(audio,sr,min_freq=30,octave_resolution=14):
+        max_frequency= sr/2
+        num_freq = round(octave_resolution * np.log2(max_frequency/min_freq))
+        # step_length = int(pow(2, int(np.ceil(np.log2(0.04 * sr)))) / 2)
+        cqt_spectrogram = np.abs(librosa.cqt(data,sr=sr,fmin=min_freq,bins_per_octave=octave_resolution,n_bins=num_freq))
         return cqt_spectrogram
+    # def cqtspec(audio, sr, min_freq=30, octave_resolution=14):
+    #     # Compute CQT spectrogram
+    #     cqt_spectrogram = np.abs(librosa.cqt(audio, sr=sr, fmin=min_freq, bins_per_octave=octave_resolution, hop_length=128))
+    #     return cqt_spectrogram
 
     def cqhc(audio,sr,min_freq=30,octave_resolution=14,num_coeff=20):
         cqt_spectrogram=np.power(cqtspec(audio,sr,min_freq,octave_resolution),2)
@@ -182,7 +182,7 @@ def fun1(wave_file):
         # spectral_component=np.real(np.fft.ifft(absftcqt_spectrogram,axis=0)[0:num_freq,:])
         pitch_component=np.real(np.fft.ifft(ftcqt_spectrogram/(absftcqt_spectrogram+1e-14),axis=0)[0:num_freq,:])
         coeff_indices=np.round(octave_resolution*np.log2(np.arange(1,num_coeff+1))).astype(int)
-        print(coeff_indices, num_coeff, num_freq)
+        # print(coeff_indices, num_coeff, num_freq)
         # coeff_indices = coeff_indices[(coeff_indices > 0) & (coeff_indices <= num_freq)]
         # if len(coeff_indices) == 0:
         #     raise ValueError('All coefficient indices are invalid.')
@@ -195,6 +195,7 @@ def fun1(wave_file):
     #Pad = 290
     shape = 290 - feat.shape[1]
     feat_pad = np.pad(feat, ((0,0), (0,shape)), 'constant')
+    print(feat_pad)
     feat_pad = feat_pad.reshape(1, 20, 290, 1)
     
     #Load model
