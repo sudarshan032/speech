@@ -1,68 +1,89 @@
 {% extends "layout.html" %}
 {% block body %}
-        <head>
-            <script>
-                function handleFileUpload(input) {
-                    var audioPlayer = document.getElementById('audioPlayer');
-                    
-                    if (input.files && input.files[0]) {
-                        var reader = new FileReader();
-                        
-                        reader.onload = function (e) {
-                            audioPlayer.src = e.target.result;
-                            audioPlayer.play();
-                        };
-                        
-                        reader.readAsDataURL(input.files[0]);
-                    }
-                }
-            </script>
-        </head>
-
-        <!-- Page Header-->
-        <header style="background-color: #0e387a;" class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
-            <title>Emotion Classification | AST</title>
-            <div class="heading2 container position-relative px-1 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-8">
-                        <div class="site-heading mb-5">
-                            <h1>Emotion Classification</h1>
-                            </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- Main Content-->
-        <div class="container" style=" margin-top: 20px; display: block; box-sizing: border-box;" >
-            <h3>Why and How ?</h3>
-            <p>The literal meaning of emotion recognition is to identify the emotions. <br> With increasing technological advancements in Artificial Intelligence (AI), machines are becoming an integral part of our life and thus, increasing the scope and motivation for emotion recognition. <br> It is a state-of-the-art method as its applications also involve the design of speech robots, military interrogation, emotional Text-To-Speech, and better human-machine interaction. <br> It's spread also incorporates applications in Assistive Speech Technologies, such as, emotion recognition for disabled and mentally challenged.  <br> <br>
-                To aid to this problem, we developed an emotion classifier, capable of detecting five emotions, namely, anger, happy, neutral, sad, and surprise using timbre based features with deep neural network based model.  <br>
-                </p>
-        </div>
-        <form class="grid pt-3" method="POST" enctype="multipart/form-data">
-            <div class="container py-10 mt-xxl-5 " style=" margin-top: 10px; display:block;">
-            <div class="container" style="background-color:  #dae3f1; box-sizing: border-box; padding-bottom: 10px; width: 40%; height: 500px; float: left; margin-left: 100px;">
-                <div class="input-group  "  style="padding:10%;align-items: center">
-                    <div class="custom-file" style="margin:10%; justify-items: center;">
-                        <input type="file" class="custom-file-input mt-xxl-4 " name="file" id="inputGroupFile04" onchange="handleFileUpload(this);">
-                        <!-- <label class="custom-file-label" for="inputGroupFile04"></label> -->
-                        <!-- <center><img style="opacity:0.1; height: 500px; padding-bottom: 10rem; padding-left:5rem; " src="{{ url_for('static', filename='assets/upload.png')}}  "></center> -->
-                    </div>
-                    <div style="margin:10%;">
-                        <audio id="audioPlayer" controls></audio>
-                    </div>
-                </div>
-            </div>
-            <div class="container " style="background-color:  #dae3f1; padding-bottom: 10rem; width: 40%; height: 500px; float: right; margin-right: 100px;"> 
-                <center><img src="{{img_gif}}" alt=" " style="height: 400px;"></center>
-                <p class="text-xxl-center fs-1" >{{emotion_name}}</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Emotion Recognition Tool</title>
+    <link rel="stylesheet" href="static/css/emotion.css">
+    <script src="static/js/emotion.js" defer></script>
+    <script>
+        function handleFileUpload(input) {
+            var audioPlayer = document.getElementById('audioPlayer');
+            
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
                 
-            </div>
+                reader.onload = function (e) {
+                    audioPlayer.src = e.target.result;
+                    audioPlayer.play();
+                };
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Speech Emotion Recognition Tool</h1>
+    </header>
+
+    <main>
+        <div class="side-by-side">
+            <section id="upload-section">
+                <h2>Upload Your File</h2>
+                <div class="upload-box">
+                    <p>Click to upload or drag and drop</p>
+                    <span>.WAV </span>
+                    <form method="POST" enctype="multipart/form-data">
+                        <input type="file" name="file" id="inputGroupFile04" onchange="handleFileUpload(this);">
+                        <br><br><br><br>
+                        <audio id="audioPlayer" controls></audio><br><br>
+                        <button id="classify-button" type="submit">CLASSIFY</button>
+                    </form>
+                </div>
+            </section>
+            <section id="recording-section">
+                <h2>Record Audio</h2>
+                <div class="upload-box">
+                    <div class="boxContainer"> 
+                        <div class="box box1"></div>
+                        <div class="box box2"></div>
+                        <div class="box box3"></div>
+                        <div class="box box4"></div>
+                        <div class="box box5"></div>
+                    </div>
+                    <div id="record-controls">
+                        <button id="start-record" onclick="startRecording()">Start</button>
+                        <button id="stop-record" onclick="stopRecording()">Stop</button>
+                    </div><br><br>
+                    <div id="record-time">
+                        <audio id="audioPlayer2" controls></audio>
+                        <br>
+                        <br>
+                        <button id="recordbtn">CLASSIFY</button>
+                    </div>
+                </div>
+            </section>
         </div>
-            <div class="input-group-append py-10"  style=" margin-top: 20px; display:block; box-sizing: border-box;"  >
-                    <button class="btn btn-outline-secondary pt-3" type="submit" style=" margin-top: 10px; padding-top: 20px; display: flex; box-sizing: border-box; background-color: dimgray;  justify-content: center;  align-items: center; margin: auto;" >Classify</button>
-            </div>
-            </form>
+
+            <section id="output-section">
+                <h2>Output</h2>
+                <div id="output-box">
+                    <p>{{ emotion_name }}</p>
+                    <img src="{{ img_gif }}" alt="Emotion GIF">
+                </div>
+            </section>
+        </div>
         
-        
+        <section class="container" style="margin-top: 20px; display: block; box-sizing: border-box;">
+            <h3>Why and How?</h3>
+            <p>
+                The literal meaning of emotion recognition is to identify the emotions. <br> With increasing technological advancements in Artificial Intelligence (AI), machines are becoming an integral part of our life and thus, increasing the scope and motivation for emotion recognition. <br> It is a state-of-the-art method as its applications also involve the design of speech robots, military interrogation, emotional Text-To-Speech, and better human-machine interaction. <br> It's spread also incorporates applications in Assistive Speech Technologies, such as, emotion recognition for disabled and mentally challenged.  <br> <br>
+                To aid to this problem, we developed an emotion classifier, capable of detecting five emotions, namely, anger, happy, neutral, sad, and surprise using timbre based features with deep neural network based model.  <br>
+            </p>
+        </section>
+    </main>
+</body>
 {% endblock %}
