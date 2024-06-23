@@ -5,23 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dysarthric Severity Assessment Tool</title>
     <link rel="stylesheet" href="static/css/dys.css">
-    <script src="static/js/dys.js" defer></script>
-    <script>
-        function handleFileUpload(input) {
-            var audioPlayer = document.getElementById('audioPlayer');
-            
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                
-                reader.onload = function (e) {
-                    audioPlayer.src = e.target.result;
-                    audioPlayer.play();
-                };
-                
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
+    <script src="static/js/dys.js"></script>
 </head>
 
 <body>
@@ -58,12 +42,17 @@
                     <div id="record-controls">
                         <button id="start-record" onclick="startRecording()">Start</button>
                         <button id="stop-record" onclick="stopRecording()">Stop</button>
+                        <p id="record-status"></p>
                     </div><br><br>
                     <div id="record-time">
                         <audio id="audioPlayer2" controls></audio>
                         <br>
                         <br>
-                        <button id="recordbtn">CLASSIFY</button>
+                        <form method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="record" value="true">
+                            <input type="hidden" name="file_path" id="hidden-file-path" value="">
+                            <button id="recordbtn" type="submit">CLASSIFY</button>
+                        </form>
                     </div>
                 </div>
             </section>
