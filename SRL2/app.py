@@ -46,48 +46,48 @@ def about():
 def vld():
     if request.method == "POST":
             if "file" not in request.files:
-                buf = os.path.join(imgFolder, 'R.gif')
-                buf1 = os.path.join(imgFolder, 'R.gif')
+                buf = os.path.join(imgFolder, 'blank.png')
+                buf1 = os.path.join(imgFolder, 'blank.png')
                 return render_template('vld.html', img_gif=buf)
             file = request.files["file"]
             if file.filename == "":
-                buf = os.path.join(imgFolder, 'R.gif')
-                buf1 = os.path.join(imgFolder, 'R.gif')
+                buf = os.path.join(imgFolder, 'blank.png')
+                buf1 = os.path.join(imgFolder, 'blank.png')
                 return render_template('vld.html', img_gif=buf)
             if '.' in file.filename and (file.filename).rsplit('.', 1)[1] in FILE_TYPES:
                 print("Current Working Directory:", os.getcwd())
                 buf, buf1 = buf, buf1 = imported_functions['Voice_Liveness_Detection'](file)
                 return render_template('vld.html', img_gif=buf, emotion_name=buf1)
             else:
-                buf = os.path.join(imgFolder, 'R.gif')
-                buf1 = os.path.join(imgFolder, 'R.gif')
+                buf = os.path.join(imgFolder, 'blank.png')
+                buf1 = os.path.join(imgFolder, 'blank.png')
                 return render_template('vld.html', img_gif=buf, emotion_name=buf1)
-    buf = os.path.join(imgFolder, 'R.gif')
-    buf1 = os.path.join(imgFolder, 'R.gif')
+    buf = os.path.join(imgFolder, 'blank.png')
+    buf1 = os.path.join(imgFolder, 'blank.png')
     return render_template('vld.html', img_gif=buf)
 
 @app.route("/add", methods=["GET","POST"])
 def add():
     if request.method == "POST":
             if "file" not in request.files:
-                buf = os.path.join(imgFolder, 'R.gif')
-                buf1 = os.path.join(imgFolder, 'R.gif')
+                buf = os.path.join(imgFolder, 'blank.png')
+                buf1 = os.path.join(imgFolder, 'blank.png')
                 return render_template('add.html', img_gif=buf)
             file = request.files["file"]
             if file.filename == "":
-                buf = os.path.join(imgFolder, 'R.gif')
-                buf1 = os.path.join(imgFolder, 'R.gif')
+                buf = os.path.join(imgFolder, 'blank.png')
+                buf1 = os.path.join(imgFolder, 'blank.png')
                 return render_template('add.html', img_gif=buf)
             if '.' in file.filename and (file.filename).rsplit('.', 1)[1] in FILE_TYPES:
                 print("Current Working Directory:", os.getcwd())
                 buf, buf1 = imported_functions['Audio_Deepfake_Detection'](file)
                 return render_template('add.html', img_gif=buf, emotion_name=buf1)
             else:
-                buf = os.path.join(imgFolder, 'R.gif')
-                buf1 = os.path.join(imgFolder, 'R.gif')
+                buf = os.path.join(imgFolder, 'blank.png')
+                buf1 = os.path.join(imgFolder, 'blank.png')
                 return render_template('add.html', img_gif=buf, emotion_name=buf1)
-    buf = os.path.join(imgFolder, 'R.gif')
-    buf1 = os.path.join(imgFolder, 'R.gif')
+    buf = os.path.join(imgFolder, 'blank.png')
+    buf1 = os.path.join(imgFolder, 'blank.png')
     return render_template('add.html', img_gif=buf)
 
 
@@ -95,24 +95,20 @@ def add():
 def dys():
     if request.method == "POST":
             if "file" not in request.files:
-                buf = os.path.join(imgFolder, 'R.gif')
-                buf1 = os.path.join(imgFolder, 'R.gif')
+                buf = os.path.join(imgFolder, 'blank.png')
                 return render_template('dys.html', img_gif=buf)
             file = request.files["file"]
             if file.filename == "":
-                buf = os.path.join(imgFolder, 'R.gif')
-                buf1 = os.path.join(imgFolder, 'R.gif')
+                buf = os.path.join(imgFolder, 'blank.png')
                 return render_template('dys.html', img_gif=buf)
             if '.' in file.filename and (file.filename).rsplit('.', 1)[1] in FILE_TYPES:
                 print("Current Working Directory:", os.getcwd())
-                buf = imported_functions['dys'](file)
+                buf = imported_functions['dysarthric_asr'](file)
                 return render_template('dys.html', img_gif=buf)
             else:
-                buf = os.path.join(imgFolder, 'R.gif')
-                buf1 = os.path.join(imgFolder, 'R.gif')
+                buf = os.path.join(imgFolder, 'blank.png')
                 return render_template('dys.html', img_gif=buf)
-    buf = os.path.join(imgFolder, 'R.gif')
-    buf1 = os.path.join(imgFolder, 'R.gif')
+    buf = os.path.join(imgFolder, 'blank.png')
     return render_template('dys.html', img_gif=buf)
 
 
@@ -120,48 +116,48 @@ def dys():
 def emotions():
     if request.method == "POST":
             if "file" not in request.files:
-                buf = os.path.join(imgFolder, 'R.gif')
-                buf1 = os.path.join(imgFolder, 'R.gif')
+                buf = os.path.join(imgFolder, 'blank.png')
+                buf1 = os.path.join(imgFolder, 'blank.png')
                 return render_template('emotions.html', img_gif=buf)
             file = request.files["file"]
             if file.filename == "":
-                buf = os.path.join(imgFolder, 'R.gif')
-                buf1 = os.path.join(imgFolder, 'R.gif')
+                buf = os.path.join(imgFolder, 'blank.png')
+                buf1 = os.path.join(imgFolder, 'blank.png')
                 return render_template('emotions.html', img_gif=buf)
             if '.' in file.filename and (file.filename).rsplit('.', 1)[1] in FILE_TYPES:
                 print("Current Working Directory:", os.getcwd())
                 buf, buf1 = imported_functions['speech_emotion_recogition'](file)
                 return render_template('emotions.html', img_gif=buf, emotion_name=buf1)
             else:
-                buf = os.path.join(imgFolder, 'R.gif')
-                buf1 = os.path.join(imgFolder, 'R.gif')
+                buf = os.path.join(imgFolder, 'blank.png')
+                buf1 = os.path.join(imgFolder, 'blank.png')
                 return render_template('emotions.html', img_gif=buf, emotion_name=buf1)
-    buf = os.path.join(imgFolder, 'R.gif')
-    buf1 = os.path.join(imgFolder, 'R.gif')
+    buf = os.path.join(imgFolder, 'blank.png')
+    buf1 = os.path.join(imgFolder, 'blank.png')
     return render_template('emotions.html', img_gif=buf)
 
 @app.route("/infant", methods=["GET","POST"])
 def infant():
     if request.method == "POST":
             if "file" not in request.files:
-                buf = os.path.join(imgFolder, 'R.gif')
-                buf1 = os.path.join(imgFolder, 'R.gif')
+                buf = os.path.join(imgFolder, 'blank.png')
+                buf1 = os.path.join(imgFolder, 'blank.png')
                 return render_template('infant.html', img_gif=buf)
             file = request.files["file"]
             if file.filename == "":
-                buf = os.path.join(imgFolder, 'R.gif')
-                buf1 = os.path.join(imgFolder, 'R.gif')
+                buf = os.path.join(imgFolder, 'blank.png')
+                buf1 = os.path.join(imgFolder, 'blank.png')
                 return render_template('infant.html', img_gif=buf)
             if '.' in file.filename and (file.filename).rsplit('.', 1)[1] in FILE_TYPES:
                 print("Current Working Directory:", os.getcwd())
                 buf, buf1 = imported_functions['INFANT_CRY_CLASSIFICATION'](file)
                 return render_template('infant.html', img_gif=buf, emotion_name=buf1)
             else:
-                buf = os.path.join(imgFolder, 'R.gif')
-                buf1 = os.path.join(imgFolder, 'R.gif')
+                buf = os.path.join(imgFolder, 'blank.png')
+                buf1 = os.path.join(imgFolder, 'blank.png')
                 return render_template('infant.html', img_gif=buf, emotion_name=buf1)
-    buf = os.path.join(imgFolder, 'R.gif')
-    buf1 = os.path.join(imgFolder, 'R.gif')
+    buf = os.path.join(imgFolder, 'blank.png')
+    buf1 = os.path.join(imgFolder, 'blank.png')
     return render_template('infant.html', img_gif=buf)
 
 
