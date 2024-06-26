@@ -1,134 +1,147 @@
-{% extends "layout.html" %}
-{% block body %}
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistive Speech Technologies</title>
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
 
-<!-- Page Header-->
-<header style="background-color: #0e387a;;" class="masthead">
-    <title>Assistive Speech Technologies | SRLAB, DAIICT</title>
-    <div class="heading1 container position-relative px-1 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-10">
-                <div class="site-heading mb-5">
-                    <h1>Assistive Speech Technologies</h1>
-
+<body>
+    <nav>
+        <div class="ministry-info">
+            <img src="../static/assets/dalogo.png" style="height: 4rem;" alt="Ministry Logo">
+            <span class="navbar-nav ms-auto me-xxl-3 py-4 py-lg-0"
+                style="font-size: 1.05rem; color: #fff; font-weight: 100; font-style: thin-italic; font-family: 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
+                National Language Translation Mission (NLTM) | Project Bhashini
+            </span>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/team">Team</a>
+            <a href="/contact">Queries</a>
+            <a href="/services">Services</a>
+            <div class="dropdown">
+                <button class="dropbtn" onclick="toggleDropdown()">Menu</button>
+                <div class="dropdown-content" id="dropdown-content">
+                    <a href="/dys">DysarthricASR</a>
+                    <a href="/infant">Infant Cry</a>
+                    <a href="/emotions">Emotion Classification</a>
+                    <a href="/vld">Voice Liveliness Detection</a>
+                    <a href="">Audio Deepfake Detection</a>
                 </div>
             </div>
         </div>
-    </div>
-</header>
+        <div class="logo">
+            <a class="navbar-brand" href="https://www.meity.gov.in/national-language-translation-mission">
+                <img id="header-img" src="../static/assets/logo_en.png" style="width: auto; height: 3rem;"
+                    alt="NLTM Logo">
+            </a>
+        </div>
+    </nav>
 
-<div class="container" style="text-align: justify; margin-top: 20px; display: block; box-sizing: border-box;">
-    <h3>What are Assistive Speech Technologies?</h3>
-    <p>Speech technologies can be effectively used in Assistive Technologies in a large variety of ways, such as improving (or enhancing) the intelligibility of unintelligible speech of disabled and providing communicative assistance (devices) for frail people or individuals with severe motor or language impairments, such as dysarthria, cerebral palsy, Parkinson’s disease, Autism Spectrum Disorder. <br><br> In addition, the design of personalized Text-To-Speech for disabled persons is a socially relevant research problem. However, there has been very less interaction in the intersection between researchers of Assistive Technologies and speech technology. <br><br>
-        Assistive Technologies allows individuals with disabilities to do things that would otherwise be difficult for them. Assistive technologies provide universal access to televisions or telephones to make them accessible to those who are visually challenged or have hearing impairments. Prof. Patil and his team of DA-IICT use their experience to develop assistive speech technologies for the disabled. <br><br> It includes:
-        <!-- <ol>
-            <li>
-                Infant Cry Classification
-            </li>
-
-            <li>
-                Emotion Recognition
-            </li>
-
-            <li>
-                Dysarthric Severity-Level Classification
-            </li>
-        </ol> -->
+    <header>
+        <h1>What are Assistive Speech Technologies?</h1>
+        <p>Speech technologies can be effectively used in Assistive Technologies in a large variety of ways,
+            such as improving the intelligibility of unintelligible speech of disabled and providing
+            communicative assistance (devices) for frail people or individuals with severe motor or language
+            impairments, such as dysarthria, cerebral palsy, Parkinson’s disease, Autism Spectrum Disorder.
+            <br><br>In addition, the design of personalized Text-To-Speech for disabled persons is a socially
+            relevant research problem. However, there has been very less interaction in the intersection between
+            researchers of Assistive Technologies and speech technology.
+            <br><br>Assistive Technologies allows individuals with disabilities to do things that would
+            otherwise be difficult for them. Assistive technologies provide universal access to televisions or
+            telephones to make them accessible to those who are visually challenged or have hearing impairments.
+            <br><br><b> Prof. Patil and his team of DA-IICT use their experience to develop assistive speech
+                technologies for the disabled.
         </p>
-</div>
+    </header>
 
-
-<!-- Main Content-->
-<div>
-    <div class="card1 ms-auto me-xxl-auto row  row-cols-md-3 ">
-        <div class="col">
-            <div class="card h-100" style="width: 18rem;">
-                <h5 class="card-title">EMOTION CLASSIFICATION</h5>
-                <div class="card-body">
-                  <img src="static/assets/emotions.png" class="card-img-top mb-xxl-4" alt="">
-                  <a href="/emotions" class="btn ">CLICK HERE</a>
-                </div>
-              </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100" style="width: 18rem;">
-                <h5 class="card-title">INFANT CRY CLASSIFICATION</h5>
-                <div class="card-body">
-                  <img src="static/assets/infantcry.jpg" class="card-img-top mb-xxl-4 " alt="">
-                  <a href="/infant" class="btn">CLICK HERE</a>
-                </div>
-              </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100" style="width: 18rem;">
-                <h5 class="card-title">DYSARTHRIC ASR</h5>
-                <div class="card-body">
-                  <img src="static/assets/dysarthria.png" class="card-img-top mb-xxl-4 " alt="">
-                  <a href="/dys" class="btn">CLICK HERE</a>
-                </div>
-              </div>
-        </div>
-        <div class="col">
-            <div class="card h-100" style="width: 18rem;">
-                <h5 class="card-title">Voice Liveness Detection</h5>
-                <div class="card-body">
-                  <img src="static/assets/vld.png" class="card-img-top mb-xxl-4 " alt="">
-                  <a href="/vld" class="btn">CLICK HERE</a>
-                </div>
-              </div>
-        </div>
-        <div class="col">
-            <div class="card h-100" style="width: 18rem;">
-                <h5 class="card-title">Audio Deepfake Detection</h5>
-                <div class="card-body">
-                  <img src="static/assets/add.png" class="card-img-top mb-xxl-4 " alt="">
-                  <a href="/add" class="btn">CLICK HERE</a>
-                </div>
-              </div>
-        </div>
-
-    </div>
-</div>
-
-
-<!--
-        <form class="grid pt-3" method="POST" enctype="multipart/form-data">
-        <div class="container py-10" style=" margin-top: 10px; display:block;">
-        <div class="container" style="background-color: #86939f; box-sizing: border-box; opacity: 0.3; padding-bottom: 10px; width: 40%; height: 500px; float: left; margin-left: 100px;">
-            <div class="input-group"  >
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" name="file" id="inputGroupFile04">
-                <label class="custom-file-label" for="inputGroupFile04"></label>
-              </div>
-                <span class="container"></span>
+    <main>
+        <section class="content" style="background-color: #95a5e9">
+            <div class="text" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <h2>DYSARTHRIC ASR</h2>
+                <p><button onclick="redirectToPage('dysarthria.html')" class="btn btn-danger">CLICK</button></p>
             </div>
-        </div>
-        <div class="container" style="background-color: #86939f; opacity: 0.3; padding-bottom: 10rem; width: 40%; height: 500px; float: right; margin-right: 100px;"> 
-            {% if abc %}
-            {{ abc }}
-            {%endif%}
-            
-        </div>
-    </div>
-        <div class="input-group-append py-10"  style=" margin-top: 20px; display:block; box-sizing: border-box;"  >
-                <button class="btn btn-outline-secondary pt-3" type="submit" style=" margin-top: 10px; padding-top: 20px; display: flex; box-sizing: border-box; background-color: dimgray;  justify-content: center;  align-items: center; margin: auto;" >Classify</button>
+            <div class="image">
+                <img src="../static/assets/dysarthriaa.jpg" alt="Placeholder Image" />
+            </div>
+        </section>
 
+        <section class="content reverse" style="background-color: #f8f865">
+            <div class="image">
+                <img src="../static/assets/emo.jpg" alt="Placeholder Image" />
+            </div>
+            <div class="text" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <h2>EMOTION CLASSIFICATION</h2>
+                <p><button onclick="redirectToPage('https://www.example.com')" class="btn btn-danger">CLICK</button></p>
+            </div>
+        </section>
 
+        <section class="content" style="background-color: #f263a6">
+            <div class="text" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <h2>INFANT CRY CLASSIFICATION</h2>
+                <p><button onclick="redirectToPage('https://www.example.com')" class="btn btn-danger">CLICK</button></p>
+            </div>
+            <div class="image">
+                <img src="../static/assets/infant.jpg" alt="Placeholder Image" />
+            </div>
+        </section>
 
+        <section class="content reverse" style="background-color: rgb(63, 104, 219);">
+            <div class="image">
+                <img src="../static/assets/voiceliveliness.jpg" alt="Placeholder Image" />
+            </div>
+            <div class="text" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <h2>VOICE LIVELINESS DETECTION</h2>
+                <p><button onclick="redirectToPage('https://www.example.com')" class="btn btn-danger">CLICK</button>
+                </p>
+            </div>
+        </section>
 
-        </div>
-        </form>
-        
-        <form class="grid py-3" action="/">
-            <div class="input-group-append"  style=" margin-top: 20px; display:block; box-sizing: border-box;"  >
-                <button class="btn btn-outline-secondary" type="submit" style=" margin-top: 10px; padding-top: 20px; display: flex; box-sizing: border-box; background-color: dimgray;  justify-content: center;  align-items: center; margin: auto;" >Reset</button>
-                
+        <section class="content" style="background-color: #1964ee">
+            <div class="text" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <h2>AUDIO DEEPFAKE DETECTION</h2>
+                <p><button onclick="redirectToPage('https://www.example.com')" class="btn btn-danger">CLICK</button></p>
+            </div>
+            <div class="image">
+                <img src="../static/assets/add.png" alt="Placeholder Image" />
+            </div>
+        </section>
+    </main>
 
--->
-</div>
-</form>
+    <footer>
+        <p>Speech Research Lab, Dhirubhai Ambani Institute of Information and Communication Technology
+            (DAIICT)<br>Gandhinagar-382007, Gujarat, India</p>
+    </footer>
 
+    <script>
+        function redirectToPage(url) {
+            window.location.href = url;
+        }
 
-{% endblock %}
+        function toggleDropdown() {
+            var dropdownContent = document.getElementById("dropdown-content");
+            dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === "block") {
+                        openDropdown.style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
