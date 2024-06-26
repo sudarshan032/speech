@@ -60,15 +60,15 @@ def record_audio(filename, fs):
 # Flask routes
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('main.html')
 
 @app.route("/team")
 def team():
-    return render_template('team.html')
+    return render_template('team_final.html')
 
 @app.route("/about")
 def about():
-    return render_template('about.html')
+    return render_template('about_final.html')
 
 @app.route("/vld", methods=["GET","POST"])
 def vld():
@@ -126,17 +126,17 @@ def dys():
             if file.filename != "" and '.' in file.filename and (file.filename).rsplit('.', 1)[1] in FILE_TYPES:
                 print("Current Working Directory:", os.getcwd())
                 buf = imported_functions['dysarthric_asr'](file)
-                return render_template('dys.html', img_gif=buf)
+                return render_template('dysarthria_final.html', img_gif=buf)
         elif "record" in request.form and "file_path" in request.form:
             print("Using recorded audio for classification.")
             file_path = request.form["file_path"]
             buf = imported_functions['dysarthric_asr'](file_path)
-            return render_template('dys.html', img_gif=buf)
+            return render_template('dysarthria_final.html', img_gif=buf)
         else:
             buf = os.path.join(imgFolder, 'blank.png')
-            return render_template('dys.html', img_gif=buf)
+            return render_template('dysarthria_final.html', img_gif=buf)
     buf = os.path.join(imgFolder, 'blank.png')
-    return render_template('dys.html', img_gif=buf)
+    return render_template('dysarthria_final.html', img_gif=buf)
 
 @app.route("/emotions", methods=["GET","POST"])
 def emotions():
@@ -188,7 +188,7 @@ def infant():
 
 @app.route("/contact")
 def contact():
-    return render_template('contact.html')
+    return render_template('contact_final.html')
 
 @app.route("/elements")
 def elements():
@@ -196,7 +196,7 @@ def elements():
 
 @app.route("/services")
 def services():
-    return render_template('services.html')
+    return render_template('main.html')
 
 @app.route('/start_recording', methods=['POST'])
 def start_recording():
