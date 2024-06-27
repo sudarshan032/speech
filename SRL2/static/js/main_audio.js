@@ -29,9 +29,9 @@ function stopRecording() {
                 console.log('Recording stopped.');
                 document.getElementById('record-status').innerText = 'Recording stopped.';
                 var audioPlayer2 = document.getElementById('audioPlayer2');
-                audioPlayer2.src = 'output.wav';
+                audioPlayer2.src = 'audio_files/output.wav';
                 audioPlayer2.play();
-                document.getElementById('hidden-file-path').value = 'output.wav';
+                document.getElementById('hidden-file-path').value = 'audio_files/output.wav';
             }
         });
 }

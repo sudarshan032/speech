@@ -36,7 +36,7 @@ FILE_TYPES = set(["wav", "WAV"])
 recording = False
 record_thread = None
 record_data = []
-output_file = "output.wav"
+output_file = "audio_files/output.wav"
 
 # Audio recording functions
 def record_audio(filename, fs):

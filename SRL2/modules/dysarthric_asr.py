@@ -88,9 +88,13 @@ def predict_label(model, audio_file):
 
 def dysarthric_asr(sound_file):
     try:
-        # Save the uploaded file temporarily
-        temp_filename = 'temp_audio.wav'
-        sound_file.save(temp_filename)
+        # Check if sound_file is a file object or a string (file path)
+        if isinstance(sound_file, str):
+            temp_filename = sound_file
+        else:
+            # Save the uploaded file temporarily
+            temp_filename = 'temp_audio.wav'
+            sound_file.save(temp_filename)
         
         # CNN Model Prediction
         cnn_label = predict_label(model_cnn, temp_filename)
@@ -112,7 +116,8 @@ def dysarthric_asr(sound_file):
         _, prediction = torch.max(outputs.data, 1)
         whisper_bigrucnn_label = mapping[class_to_idx[prediction.numpy()[0]]][0]
         
-        os.remove(temp_filename)  # Clean up the temporary file
+        if not isinstance(sound_file, str):
+            os.remove(temp_filename)  # Clean up the temporary file
         
         return whisper_bigrucnn_label, cnn_label
     except sf.LibsndfileError as e:
