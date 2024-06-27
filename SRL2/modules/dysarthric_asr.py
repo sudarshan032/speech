@@ -67,16 +67,14 @@ class BiGRUAudioClassifier(nn.Module):
 
 processor_small = WhisperProcessor.from_pretrained("openai/whisper-small")
 model_small = WhisperWordClassifier.from_pretrained("openai/whisper-small")
-
+directory = r"test"
+classes = sorted(entry.name for entry in os.scandir(directory) if entry.is_dir())
+class_to_idx = {i: c for i, c in enumerate(classes)}
+# MAPPING
+df = pd.read_excel("mapping.xlsx")
+mapping = df.set_index('FILE NAME').T.to_dict('list')
 
 def dysarthric_asr(sound_file):
-    directory = r"test"
-    classes = sorted(entry.name for entry in os.scandir(directory) if entry.is_dir())
-    class_to_idx = {i: c for i, c in enumerate(classes)}
-    # MAPPING
-    df = pd.read_excel("mapping.xlsx")
-    mapping = df.set_index('FILE NAME').T.to_dict('list')
-
     sample, sr = librosa.load(sound_file, sr = 16000)
     input_feature = processor_small(sample, sampling_rate=sr, return_tensors="pt").input_features
     images = model_small(input_feature).last_hidden_state

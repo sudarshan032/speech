@@ -132,9 +132,6 @@ def dys():
             file_path = request.form["file_path"]
             buf = imported_functions['dysarthric_asr'](file_path)
             return render_template('dysarthria_final.html', img_gif=buf)
-        else:
-            buf = os.path.join(imgFolder, 'blank.png')
-            return render_template('dysarthria_final.html', img_gif=buf)
     buf = os.path.join(imgFolder, 'blank.png')
     return render_template('dysarthria_final.html', img_gif=buf)
 
@@ -147,9 +144,11 @@ def emotions():
                 print("Current Working Directory:", os.getcwd())
                 buf, buf1 = imported_functions['speech_emotion_recogition'](file)
                 return render_template('emotions.html', img_gif=buf, emotion_name=buf1)
-        buf = os.path.join(imgFolder, 'blank.png')
-        buf1 = os.path.join(imgFolder, 'blank.png')
-        return render_template('emotions.html', img_gif=buf, emotion_name=buf1)
+        elif "record" in request.form and "file_path" in request.form:
+            print("Current Working Directory:", os.getcwd())
+            file_path = request.form["file_path"]
+            buf, buf1 = imported_functions['speech_emotion_recogition'](file_path)
+            return render_template('emotions.html', img_gif=buf, emotion_name=buf1)
     buf = os.path.join(imgFolder, 'blank.png')
     buf1 = os.path.join(imgFolder, 'blank.png')
     return render_template('emotions.html', img_gif=buf, emotion_name=buf1)
