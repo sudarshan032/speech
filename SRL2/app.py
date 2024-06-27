@@ -125,15 +125,15 @@ def dys():
             file = request.files["file"]
             if file.filename != "" and '.' in file.filename and (file.filename).rsplit('.', 1)[1] in FILE_TYPES:
                 print("Current Working Directory:", os.getcwd())
-                buf = imported_functions['dysarthric_asr'](file)
-                return render_template('dysarthria_final.html', img_gif=buf)
+                buf,buf1 = imported_functions['dysarthric_asr'](file)
+                return render_template('dysarthria_final.html', img_gif=buf,severity=buf1)
         elif "record" in request.form and "file_path" in request.form:
             print("Using recorded audio for classification.")
             file_path = request.form["file_path"]
-            buf = imported_functions['dysarthric_asr'](file_path)
-            return render_template('dysarthria_final.html', img_gif=buf)
+            buf,buf1 = imported_functions['dysarthric_asr'](file_path)
+            return render_template('dysarthria_final.html', img_gif=buf,severity=buf1)
     buf = os.path.join(imgFolder, 'blank.png')
-    return render_template('dysarthria_final.html', img_gif=buf)
+    return render_template('dysarthria_final.html', img_gif=buf, severity="unknown")
 
 @app.route("/emotions", methods=["GET", "POST"])
 def emotions():
