@@ -60,7 +60,7 @@ def record_audio(filename, fs):
 # Flask routes
 @app.route('/')
 def index():
-    return render_template('main.html')
+    return render_template('index.html')
 
 @app.route("/team")
 def team():
