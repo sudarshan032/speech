@@ -412,7 +412,7 @@ h6 {
 --------------------------------------------------------------*/
 #hero {
     width: 100%;
-    background: url("../assets/v1.jpg");
+    background: url("../assets/dalogo.png");
     position: relative;
     padding: 120px 0 0 0;
 }
@@ -749,9 +749,12 @@ section {
 }
 
 .about .video-box {
-    background: url("../assets/v1.jpg") center center no-repeat;
+    background: url("../assets/speechback.jpg") center center no-repeat ;
     background-size: contain;
     min-height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    
 }
 
 .about .play-btn {
@@ -973,7 +976,7 @@ section {
 --------------------------------------------------------------*/
 .testimonials {
     padding: 80px 0;
-    background: url("../assets/v1.jpg") no-repeat;
+    background: url("../assets/dalogo.png") no-repeat;
     background-position: center center;
     background-size: cover;
     position: relative;
