@@ -59,10 +59,6 @@ processor_small = WhisperProcessor.from_pretrained("openai/whisper-small")
 model_small = WhisperWordClassifier.from_pretrained("openai/whisper-small")
 model_cnn = load_model('models/model_noise_white_40.h5')
 
-# # Directory and mapping initialization
-# directory = r"test"
-# classes = sorted(entry.name for entry in os.scandir(directory) if entry.is_dir())
-# class_to_idx = {i: c for i, c in enumerate(classes)}
 file_path = "mapping.txt"
 
 with open(file_path, 'r') as file:
