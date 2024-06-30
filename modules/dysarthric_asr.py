@@ -1,12 +1,13 @@
-import json
-import os
-import pandas as pd
 import librosa
+import pandas as pd
+import json
 import torch
 from transformers import WhisperProcessor
+from typing import Optional
 from transformers.models.whisper.modeling_whisper import WhisperModel, WhisperEncoder
 from transformers.models.whisper.configuration_whisper import WhisperConfig
 import torch.nn as nn
+import os
 import numpy as np
 from tensorflow.keras.models import load_model
 import soundfile as sf
@@ -53,34 +54,35 @@ class BiGRUAudioClassifier(nn.Module):
         output = self.fc(last_hidden_state)
         return output
 
-# Function to save class mappings
-def save_class_mappings(directory, mapping_file='class_mappings.json'):
-    classes = sorted(entry.name for entry in os.scandir(directory) if entry.is_dir())
-    class_to_idx = {i: c for i, c in enumerate(classes)}
-    mappings = {
-        'classes': classes,
-        'class_to_idx': class_to_idx
-    }
-    with open(mapping_file, 'w') as f:
-        json.dump(mappings, f)
-
-# Function to load class mappings
-def load_class_mappings(mapping_file='class_mappings.json'):
-    with open(mapping_file, 'r') as f:
-        mappings = json.load(f)
-    return mappings['classes'], mappings['class_to_idx']
-
-# Save the class mappings (run this once)
-directory = r"test"
-save_class_mappings(directory)
-
-# Load the class mappings (use this in your code)
-classes, class_to_idx = load_class_mappings()
-
-# Load other necessary models
+# Load the necessary models
 processor_small = WhisperProcessor.from_pretrained("openai/whisper-small")
 model_small = WhisperWordClassifier.from_pretrained("openai/whisper-small")
 model_cnn = load_model('models/model_noise_white_40.h5')
+
+# # Directory and mapping initialization
+# directory = r"test"
+# classes = sorted(entry.name for entry in os.scandir(directory) if entry.is_dir())
+# class_to_idx = {i: c for i, c in enumerate(classes)}
+file_path = "mapping.txt"
+
+with open(file_path, 'r') as file:
+    content = file.read()
+
+# Remove the curly braces and split the string into key-value pairs
+content = content.strip('{}')
+items = content.split(',')
+
+# Create the dictionary manually
+class_to_idx = {}
+for item in items:
+    key, value = item.split(':')
+    key = int(key.strip())  # Convert key to integer
+    value = value.strip().strip("'")  # Remove whitespace and single quotes from value
+    class_to_idx[key] = value
+
+# Print the generated mapping to verify
+# print(class_to_idx)
+
 
 df = pd.read_excel("mapping.xlsx")
 mapping = df.set_index('FILE NAME').T.to_dict('list')
