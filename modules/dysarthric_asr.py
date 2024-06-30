@@ -76,12 +76,9 @@ items = content.split(',')
 class_to_idx = {}
 for item in items:
     key, value = item.split(':')
-    key = int(key.strip())  # Convert key to integer
-    value = value.strip().strip("'")  # Remove whitespace and single quotes from value
+    key = int(key.strip()) 
+    value = value.strip().strip("'") 
     class_to_idx[key] = value
-
-# Print the generated mapping to verify
-# print(class_to_idx)
 
 
 df = pd.read_excel("mapping.xlsx")
